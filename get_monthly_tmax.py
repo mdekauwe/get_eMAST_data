@@ -19,7 +19,7 @@ def get_data(var_id, row, col):
     tmax = []
     dates = []
     while current < stop:
-        
+
         if current.month < 10:
             month = "0%s" % (current.month)
         else:
@@ -30,7 +30,8 @@ def get_data(var_id, row, col):
 
         dataset = open_url(url)
         variable = dataset['air_temperature']
-        tmax.append(variable[0,2000,2000].array[:][0][0][0])
+        #print variable[0,2000:2005,2000:2005].array[:]
+        tmax.append(variable[0,2000:2005,2000:2005].array[:][0][0][0])
         dates.append(current)
 
         current += relativedelta(months=1)
