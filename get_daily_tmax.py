@@ -28,11 +28,17 @@ while current < stop:
         month = "%s" % (current.month)
     year = current.year
 
+
     date_str = "%s%s%s" % (year, month, day)
     doy_url = "%s/%d/%s_%s_v1m0_%s.nc" % (url, year, emast_id, var_id, date_str)
+
+
     dataset = open_url(doy_url)
     variable = dataset['air_temperature']
     tmax.append(variable[0,2000,2000].array[:][0][0][0])
     dates.append(current)
 
     current += timedelta(days=1)
+
+for i in range(len(tmax)):
+    print(dates[i], tmax[i])
